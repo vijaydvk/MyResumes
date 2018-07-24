@@ -1,0 +1,184 @@
+Sub Macro2()
+'
+' Macro2 Macro
+' mail
+'run this macro from book 2
+'--------------------------
+Dim sht As Worksheet
+Dim fndList As Variant
+Dim rplcList As Variant
+Dim i As Integer
+Dim wdapp, wddoc, mysheet, wdapp1, wdapp2, wdapp3, wdapp4 As Object
+Dim mysheet1 As Object
+Dim sh() As String
+Dim mailsheet, individualsheet As Object
+Dim row1, col1 As Integer
+Dim x, y As Integer
+Dim it As Integer
+Dim add As Integer
+add = 2
+Dim FindRow As Range
+Set mailsheet = ActiveSheet
+                     With ActiveSheet
+                      lastrow1 = .Cells(.Rows.count, "A").End(xlUp).Row
+                     End With
+                    
+                    'wkb.Sheets.Add(After:=Worksheets(1)).Name = "sh2"
+                    
+                    Set wkb = Workbooks.add
+                
+                     
+                     For i = 1 To lastrow1
+                         Set wdapp = CreateObject("Excel.Application")
+                         On Error Resume Next
+                         Set wddoc = wdapp.Workbooks.Open(mailsheet.Cells(i, 6))
+                                wdapp.Visible = True
+                                On Error Resume Next
+                                Set mysheet = wdapp.ActiveWorkbook.ActiveSheet
+                                Row = mysheet.UsedRange.Rows.count
+                                'sh(i) = Left(Cells(i, 5), 3)
+                                'MsgBox Left(mysheet.Cells(i, 5), 3)
+                                'MsgBox Left(mailsheet.Cells(i, 5).value, 3)
+                                'Set individualsheet =
+                                wkb.Sheets.add(After:=Worksheets(i)).Name = Left(mailsheet.Cells(i, 5).value, 3)
+                                Application.Wait (Now + TimeValue("0:00:01"))
+                                Application.DisplayAlerts = bSwitch
+                                Set individualsheet = ActiveSheet
+                                mysheet.Columns("A:B").Copy
+                                individualsheet.Columns("B:C").PasteSpecial xlPasteValues
+                                'Application.Wait (Now + TimeValue("0:00:01"))
+                                individualsheet.Cells(1, 1).value = "Location Names"
+                                individualsheet.Cells(1, 2).value = "Phone List"
+                                individualsheet.Cells(1, 3).value = "Quantity"
+                                individualsheet.Cells(1, 4).value = "RQ4 Count"
+                                individualsheet.Cells(1, 5).value = "Variance"
+                                individualsheet.Cells(2, 1).value = mailsheet.Cells(i, 5).value
+                                individualsheet.Cells(1, 1).Interior.ColorIndex = 33
+                                individualsheet.Cells(1, 1).Borders.LineStyle = xlContinuous
+                                individualsheet.Cells(1, 2).Interior.ColorIndex = 33
+                                individualsheet.Cells(1, 2).Borders.LineStyle = xlContinuous
+                                individualsheet.Cells(1, 3).Interior.ColorIndex = 33
+                                individualsheet.Cells(1, 3).Borders.LineStyle = xlContinuous
+                                individualsheet.Cells(1, 4).Interior.ColorIndex = 33
+                                individualsheet.Cells(1, 4).Borders.LineStyle = xlContinuous
+                                individualsheet.Cells(1, 5).Interior.ColorIndex = 33
+                                individualsheet.Cells(1, 5).Borders.LineStyle = xlContinuous
+                                individualsheet.Columns("A:I").AutoFit
+                                'Application.Wait (Now + TimeValue("0:00:01"))
+                                row1 = individualsheet.UsedRange.Rows.count
+                                col1 = individualsheet.UsedRange.Columns.count
+                                
+                                For x = 1 To row1
+                                For y = 1 To col1
+                                individualsheet.Cells(x, y).Borders.LineStyle = xlContinuous
+                                Next y
+                                If x > 2 Then
+                                individualsheet.Cells(x, 1).value = mailsheet.Cells(i, 5).value
+                                End If
+                                Next x
+                                fndList = Array("harmony", "galaxy s 8", "galaxy s8", "lg lg harmony", "gray", "samsung samsung galaxy s8", "samsung galaxy amp prime 2", "Grand X 4", "grand x4", "galaxy amp prime 2", "samsung amp prime 2", "lg fortune", "grand x 3", "grand x", "ZTE Gtand X", "LG G Hormony", "LG X Power", "ZTE Sonata 3", "Alcatel Streak", "Iphone 7+ 32GB black", "Iphone 7+ 32GB rose gold", "Iphone 7 128 GB BLACK", "GALAXY S 7", "Samsung galaxy s7", "Samsung galaxy s7", "GALAXY S 6", "Samsung galaxy s6", "Samsung galaxy s6", "lg stylo 2", "ALCATEL IDOL 3", "ALCATEL IDOL 4", "HTC 626S", "HTC 520", "LG ESCAPE GOLD", "galaxy s", "Amp Prime2", "Galaxy X8", "samsung s8", "LG G Stylo2", "Samsung 8", "Samsung Prime 2", "GALXY S8", "Samsung Galaxy 8")
+                                rplcList = Array("LG Harmony", "Samsung Galaxy S8", "Samsung Galaxy S8", "LG Harmony", "grey", "Samsung Galaxy S8", "Amp Prime 2", "ZTE Grand X 4", "ZTE Grand X 4", "Amp Prime 2", "Amp Prime 2", "Fortune", "ZTE Grand X 3", "ZTE Grand X", "ZTE Grand X", "LG Harmony", "X Power", "Sonata 3", "Streak", "iPhone 7 Plus 32GB Black", "iPhone 7 Plus 32GB Rose Gold", "iPhone 7 128GB Jet Black", "Galaxy S7", "Galaxy S7", "Galaxy S7", "Galaxy S6", "Galaxy S6", "Galaxy S6", "Stylo 2", "Alcatel OneTouch Idol 3", "Alcatel OneTouch Idol 4", "HTC Desire 626s", "HTC Desire 520", "Escape 3 Gold", "Galaxy S 8", "Amp Prime 2", "Galaxy S 8", "samsung galaxy s8", "LG G Stylo", "samsung galaxy s8", "Amp Prime 2", "samsung galaxy s8", "samsung galaxy s8")
+
+                                'Loop through each item in Array lists
+                                For x = LBound(fndList) To UBound(fndList)
+                                'Loop through each worksheet in ActiveWorkbook
+                               ' For Each sht In ActiveWorkbook.Worksheets
+                                    individualsheet.Cells.Replace What:=fndList(x), Replacement:=rplcList(x), _
+                                    LookAt:=xlWhole, SearchOrder:=xlByRows, MatchCase:=False, _
+                                    SearchFormat:=False, ReplaceFormat:=False
+                               ' Next sht
+                                Next x
+                                
+                     wddoc.Save
+                     wdapp.Quit
+                     Next i
+                       'MsgBox sh(1)
+                     
+                    ' Set wkb = Workbooks.Add
+                    ' MsgBox wkb.ActiveSheet.Name
+                    
+
+                        Set wdapp2 = CreateObject("Excel.Application")
+                        On Error Resume Next
+                        Set wdapp3 = wdapp2.Workbooks.Open("d:\Pivot table.xls")
+                        wdapp2.Visible = True
+                         '       On Error Resume Next
+                        Set mysheet1 = wdapp2.ActiveWorkbook.ActiveSheet
+                     'MsgBox mysheet1.Cells(3, 2).value
+                     For i = 2 To lastrow1 + 1
+                     Set individualsheet = wkb.Worksheets(i)
+                     row1 = individualsheet.UsedRange.Rows.count
+                     'col1 = individualsheet.UsedRange.Columns.count
+                     'MsgBox individualsheet.Name
+                     'mysheet1.Cells(4, 2).value = ""
+                     'mysheet1.Cells(4, 2).value = individualsheet.Cells(2, 1).value
+                     '=VLOOKUP(B2,'D:\[Pivot table.xls]Sheet2'!$A$5:$B$276,2,0)
+                         'With mysheet1.PivotTables("PivotTable1").PivotFields("Location")
+                            '.PivotItems(.PivotItems(1).Name).Visible = False
+                            '.PivotItems(individualsheet.Cells(2, 1).value).Visible = True
+                           ' MsgBox .PivotItems(1).Name
+                            '.PivotItems("286: Sun Com Mobile LLC - Harlingen").Visible = False
+                            '.PivotItems(individualsheet.Cells(2, 1).value).Visible = True
+                          '    For it = 1 To .PivotItems.count
+                           '    If .PivotItems(it).Name = individualsheet.Cells(2, 1).value Then
+                           '    .PivotItems(it).Visible = True
+                           '    Else
+                           '    .PivotItems(it).Visible = False
+                           '    End If
+                           '   Next it
+                          
+                         ' mysheet1.PivotTables("PivotTable1").PivotFields("Location").PivotFilters.add Type:=xlCaptionEquals, Value1:=individualsheet.Cells(2, 1).value
+                         ' mysheet1.PivotTables("PivotTable1").PivotFields("Location").ClearAllFilters
+                        'End With
+                    
+                   ' With mysheet1.PivotTables("PivotTable1").PivotFields("Location")
+                   ' .PivotItems(.PivotItems.count).Visible = True
+                   ' .PivotItems("(Select All)").Visible = False
+                   ' End With
+                        
+                        
+                   ' individualsheet.Range("D2:D" & row1).Formula = "=VLOOKUP(B2,'D:\[Pivot table.xls]Sheet2'!$A$5:$B$276,2,0)"
+                   ' individualsheet.Columns("D1:D60").Copy
+                   ' individualsheet.Columns("D1:D60").PasteSpecial xlPasteValues
+                    'add = add + 1
+                     With mysheet1
+                      row2 = .Cells(.Rows.count, "A").End(xlUp).Row
+                     End With
+                     row2 = mysheet1.UsedRange.Rows.count
+                     col2 = mysheet1.UsedRange.Columns.count
+                     row2 = row2 + 1
+                     col2 = col2 - 1
+                     
+                     'Set FindRow = mysheet1.Range("B4:FV").Find(What:="293: Sun Com Mobile LLC - Houston", LookIn:=xlValues, MatchCase:=False, LookAt:=xlPart)
+                     'MsgBox FindRow.Row
+                     For x = 2 To col2
+                     If mysheet1.Cells(4, x) = individualsheet.Cells(2, 1).value Then
+                     column = x
+                     'MsgBox mysheet1.Cells(4, x)
+                     Exit For
+                     End If
+                     Next x
+                     
+                     'For y = 5 To row2
+                       For j = 2 To row1
+                       Set FindRow = mysheet1.Range("A:FV").Find(What:=individualsheet.Cells(j, 2).value, LookIn:=xlValues, MatchCase:=False, LookAt:=xlWhole)
+                      ' If LCase(individualsheet.Cells(j, 2).value) = LCase(mysheet1.Cells(y, 1).value) Then
+                      '      individualsheet.Cells(j, 4).value = mysheet1.Cells(y, x).value
+                      ' End If
+                      'MsgBox individualsheet.Cells(j, 2).value
+                      'MsgBox FindRow.row
+                        individualsheet.Cells(j, 4).value = mysheet1.Cells(FindRow.Row, column).value
+                       ' MsgBox mysheet1.Cells(FindRow.Row, column).value
+                        If mysheet1.Cells(FindRow.Row, column).value = "" Then
+                           individualsheet.Cells(j, 4).value = "N/A"
+                        End If
+                        Next j
+                     'Next y
+
+                     Next i
+                     
+                     'MsgBox x
+                     
+              
+                     
+End Sub

@@ -1,0 +1,35 @@
+
+Public Sub vba()
+'
+' Macro1 Macro
+' sel
+'
+
+'
+
+  Dim m As Integer, c As Integer, chktr As Integer, var As Integer, varcount As Integer, getstr As String, dispstr, dispstr1, dispstr2, deltxt As String
+  Dim Selenium As New WebDriver
+  Dim n As Integer, nchk As Integer, ncnt As Integer
+  Dim x, y, x1, z1, x2, y2 As String
+  x = "//table[contains(@class, 'orderResultsDetailTable')]/tbody/tr/td/table/tbody/tr["
+  y = "]/td/ul/li[2]/ul[2]/li"
+  
+  x1 = "//table[contains(@class, 'orderResultsDetailTable')]/tbody/tr/td/table/tbody/tr["
+  y1 = "]/td[6]/a/@href"
+  
+  x2 = "//table[contains(@class, 'orderResultsDetailTable')]/tbody/tr/td/table/tbody/tr["
+  y2 = "]/td[6]/span"
+  var = 1
+  n = 1
+  nchk = 0
+  ncnt = 3
+  chktr = 0
+  Selenium.Start "internetexplorer", "https://www.fedex.com/apps/fedextrack/?action=track&action=track&language=english&cntry_code=us&initial=x&tracknumbers=074347380478445"
+  Selenium.Get "/"
+  
+   Selenium.Wait 1000
+  Selenium.Close
+
+
+
+End Sub

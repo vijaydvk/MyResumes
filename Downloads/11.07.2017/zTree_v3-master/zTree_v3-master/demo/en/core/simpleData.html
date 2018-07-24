@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+	<TITLE> ZTREE DEMO - Simple Data</TITLE>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="../../../css/demo.css" type="text/css">
+	<link rel="stylesheet" href="../../../css/zTreeStyle/zTreeStyle.css" type="text/css">
+	<script type="text/javascript" src="../../../js/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="../../../js/jquery.ztree.core.js"></script>
+	<!--  <script type="text/javascript" src="../../../js/jquery.ztree.excheck.js"></script>
+	  <script type="text/javascript" src="../../../js/jquery.ztree.exedit.js"></script>-->
+	<SCRIPT type="text/javascript">
+		<!--
+		var setting = {
+			data: {
+				simpleData: {
+					enable: true
+				}
+			}
+		};
+
+		var zNodes =[
+			{ id:"vijay", pId:"", name:"pNode 1", location:"pNode 1", open:true},			
+			{ id:2, pId:0, name:"pNode 11"},
+			{ id:21, pId:2, name:"vijay1"},
+			{ id:"dan", pId:"sam", name:"vijay2"},
+			{ id:23, pId:2, name:"vijay3"},
+			{ id:24, pId:2, name:"vijay4"},
+			{ id:25, pId:2, name:"vijay5"},
+			{ id:26, pId:2, name:"vijay6"},
+			{ id:27, pId:2, name:"vijay7"},
+			{ id:28, pId:2, name:"vijay8"},
+			{ id:29, pId:2, name:"vijay9"},
+			{ id:30, pId:2, name:"vijay10"},
+			{ id:"sam", pId:"vijay", name:"vijay11"},
+			{ id:3, pId:0, name:"pNode 11"},
+			{ id:31, pId:3, name:"vijay31"},
+			{ id:"sam", pId:"vijay", name:"vijay0"},
+
+		];
+
+		$(document).ready(function(){
+			$.fn.zTree.init($("#treeDemo"), setting, zNodes);
+		});
+		//-->
+	</SCRIPT>
+ </HEAD>
+
+<BODY>
+<div class="content_wrap">
+	<div class="zTreeDemoBackground left">
+		<ul id="treeDemo" class="ztree"></ul>
+	</div>
+
+</div>
+</BODY>
+</HTML>

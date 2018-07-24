@@ -1,0 +1,53 @@
+Sub Working_hours()
+'
+' Working_hours Macro
+'
+
+'
+Dim value As Integer
+Dim sheet As Workbook
+With ActiveWorkbook.ActiveSheet
+   dpapprow = .Cells(.Rows.count, "A").End(xlUp).Row
+End With
+Set sheet = Workbooks.Item(3)
+    lRow = sheet.ActiveSheet.Cells.Find(What:="*", _
+                    After:=Range("A1"), _
+                    LookAt:=xlPart, _
+                    LookIn:=xlFormulas, _
+                    SearchOrder:=xlByRows, _
+                    SearchDirection:=xlPrevious, _
+                    MatchCase:=False).Row
+                    MsgBox lRow
+For i = 4 To dpapprow
+For j = 4 To lRow '4 To 50
+ If sheet.ActiveSheet.Cells(j, 4).value = ActiveWorkbook.ActiveSheet.Cells(i, 2) Then
+    If ActiveWorkbook.ActiveSheet.Cells(i, 10).value > 40 Then
+    sheet.ActiveSheet.Cells(j, 9).value = 40
+    sheet.ActiveSheet.Cells(j, 10).value = ActiveWorkbook.ActiveSheet.Cells(i, 10).value - 40
+    Else
+    sheet.ActiveSheet.Cells(j, 9).value = ActiveWorkbook.ActiveSheet.Cells(i, 10).value
+    sheet.ActiveSheet.Cells(j, 10).value = 0
+    End If
+    If ActiveWorkbook.ActiveSheet.Cells(i, 19).value > 40 Then
+    sheet.ActiveSheet.Cells(j, 11).value = 40
+    sheet.ActiveSheet.Cells(j, 12).value = ActiveWorkbook.ActiveSheet.Cells(i, 19).value - 40
+    Else
+    sheet.ActiveSheet.Cells(j, 11).value = ActiveWorkbook.ActiveSheet.Cells(i, 19).value
+    sheet.ActiveSheet.Cells(j, 12).value = 0
+    End If
+    
+ End If
+Next j
+Next i
+
+For j = 4 To 59
+If sheet.ActiveSheet.Cells(j, 9) = "" And sheet.ActiveSheet.Cells(j, 9) = "" Then
+sheet.ActiveSheet.Cells(j, 9).value = 0
+sheet.ActiveSheet.Cells(j, 10).value = 0
+sheet.ActiveSheet.Cells(j, 11).value = 0
+sheet.ActiveSheet.Cells(j, 12).value = 0
+End If
+chk = 0
+Next j
+
+End Sub

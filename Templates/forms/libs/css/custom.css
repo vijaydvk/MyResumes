@@ -1,0 +1,104 @@
+/* your styles go here */
+	section {
+		padding: 10px 0;
+	}
+	.list-unstyled{
+		padding: 5px 0!important;
+	}
+	.sidebar-header {
+		padding: 15px 15px!important;
+	}
+	.input-material
+	{
+		padding:3px;!important;
+	}
+	select,input
+	{
+		color:#7b858a!important;
+	}
+	label
+	{
+		color:black!important;
+	}
+	#radioBtn .notActive{
+		color: #3276b1;
+		background-color: #fff;
+	}	
+	#radioBtn .active{
+		color: #3276b1;
+		background-color: #eee;
+	}	
+	.btn-sm
+	{
+		font-size: 0.675rem;
+	}
+	select {
+
+	  /* styling */
+	  background-color: white!important;
+	  border: thin solid #EEF5F9 !important;
+	  border-radius: 4px!important;
+	  display: inline-block!important;
+	  font: inherit!important;
+	  line-height: 1.5em!important;
+	  padding: 0.5em 3.5em 0.5em 1em!important;
+
+	  /* reset */
+
+	  margin: 0!important;      
+	  -webkit-box-sizing: border-box!important;
+	  -moz-box-sizing: border-box!important;
+	  box-sizing: border-box!important;
+	  -webkit-appearance: none!important;
+	  -moz-appearance: none!important;
+	  appearance:none!important;
+	}
+	select.round {
+	  background-image:
+		linear-gradient(45deg, transparent 50%, gray 50%),
+		linear-gradient(135deg, gray 50%, transparent 50%),
+		radial-gradient(#ddd 70%, transparent 72%);
+	  background-position:
+		calc(100% - 16px) calc(1em + 2px),
+		calc(100% - 11px) calc(1em + 2px),
+		calc(100% - .5em) .5em;
+	  background-size:
+		5px 5px,
+		5px 5px,
+		1.5em 1.5em;
+	  background-repeat: no-repeat;
+	}
+	.nopad
+	{
+		padding:5px;
+		border:0;
+		border-bottom:1px solid #eee;
+	}
+	body
+	{
+		font-size: 0.8rem!important;
+	}
+	.form-control
+	{
+		font-size: 0.8rem!important;
+	}
+	.full-width
+	{
+		width:100%!important;
+		padding-left:30px;
+		padding-right:30px;
+	}
+	.jSignature
+	{
+		background-color:white!important;
+		width:100%!important;
+		box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1), -1px 0 2px rgba(0, 0, 0, 0.05);
+	}
+	.select-no-pad
+	{
+		padding:0px!important;
+	}
+	.form-group-material
+	{
+		margin-bottom:5px!important;
+	}

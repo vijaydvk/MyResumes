@@ -1,0 +1,79 @@
+Attribute VB_Name = "Module17"
+Sub Hard_count_countsheet()
+Attribute Hard_count_countsheet.VB_ProcData.VB_Invoke_Func = " \n14"
+'
+' Hard_count_countsheet Macro
+'
+
+'
+Dim i, j, chk As Integer
+Dim exapp, exdoc, exsheet As Object
+Dim exapp1, exdoc1, exsheet1 As Object
+chk = 0
+Set exapp = CreateObject("Excel.Application")
+Set exdoc = exapp.Workbooks.Open("D:/Automation coding/hard count/05.05/045358.xls")
+Set exsheet = exapp.ActiveWorkbook.ActiveSheet
+exapp.Visible = True
+With exsheet
+rowc = .Cells(.Rows.count, "A").End(xlUp).Row
+End With
+With ActiveSheet
+
+For i = 2 To 169
+
+    For j = 4 To rowc
+    If .Cells(i, "A").value = exsheet.Cells(j, "B").value Then
+    chk = 1
+    .Cells(i, "F").value = "Yes"
+    .Cells(i, "G").value = exsheet.Cells(j, "A")
+    .Cells(i, "L") = exsheet.Cells(j, "D")
+    If Left(.Cells(i, "L").value, 1) = "-" Then
+    .Cells(i, "L").value = Replace(.Cells(i, "L").value, "-", "$")
+    Else
+    .Cells(i, "L").value = "$" & exsheet.Cells(j, "D")
+    If .Cells(i, "L").value <> "0" Then
+    .Cells(i, "L").Interior.ColorIndex = 37
+    End If
+    End If
+    Exit For
+    End If
+    Next j
+    
+    If chk = 0 Then
+    .Cells(i, "F").value = "NO"
+    End If
+   chk = 0
+Next i
+
+exdoc.Save
+exapp.Quit
+
+Set exapp1 = CreateObject("Excel.Application")
+Set exdoc1 = exapp1.Workbooks.Open("D:/Automation coding/hard count/05.05/Inventory Totals by Location.xls")
+Set exsheet1 = exapp1.ActiveWorkbook.ActiveSheet
+exapp1.Visible = True
+With exsheet1
+rowc = .Cells(.Rows.count, "A").End(xlUp).Row
+End With
+
+For i = 2 To 169
+
+    For j = 4 To rowc
+    If .Cells(i, "A").value = exsheet1.Cells(j, "A").value Then
+    .Cells(i, "H").value = exsheet1.Cells(j, "B").value
+    .Cells(i, "I").value = exsheet1.Cells(j, "C").value
+    .Cells(i, "J").value = exsheet1.Cells(j, "D").value
+    .Cells(i, "K").value = exsheet1.Cells(j, "E").value
+    .Cells(i, "M").Formula = "=SUM(H" & i & ":L" & i & ")"
+    Exit For
+    End If
+    Next j
+    
+
+Next i
+
+
+End With
+
+
+End Sub

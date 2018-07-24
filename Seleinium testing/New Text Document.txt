@@ -1,0 +1,197 @@
+Sub webdriver()
+'
+' webdriver Macro
+'
+
+'
+
+
+    ' End If
+    ' Wend
+    'MsgBox Cells(i, 11)
+  Dim m As Integer, c As Integer, chktr As Integer, var As Integer, varcount As Integer, getstr As String, dispstr, dispstr1, dispstr2, deltxt As String
+  Dim Selenium As New webdriver
+  Dim n As Integer, nchk As Integer, ncnt As Integer
+  Dim x, y, x1, z1, x2, y2 As String
+  x = "//table[contains(@class, 'orderResultsDetailTable')]/tbody/tr/td/table/tbody/tr["
+  y = "]/td/ul/li[2]/ul[2]/li"
+  
+  x1 = "//table[contains(@class, 'orderResultsDetailTable')]/tbody/tr/td/table/tbody/tr["
+  y1 = "]/td[6]/a/@href"
+  
+  x2 = "//table[contains(@class, 'orderResultsDetailTable')]/tbody/tr/td/table/tbody/tr["
+  y2 = "]/td[6]/span"
+  var = 1
+  n = 1
+  nchk = 0
+  ncnt = 3
+  chktr = 0
+  Selenium.Start "internetexplorer", "https://www.im-mobilityonline.com/bpo/secure/Login"
+  Selenium.Get "/"
+  Selenium.FindElementById("usernameInput").SendKeys ("DanSupport")
+ ' Selenium.Wait 1000
+  Selenium.FindElementByName("password:container:input").SendKeys ("1Cricket2")
+  'Selenium.Wait 1000
+  Selenium.FindElementByName(":submit", timeout:=10000).Click
+ ' Selenium.Wait 1000
+  Selenium.Get "https://www.im-mobilityonline.com/bpo/OrderHistory"
+ ' Selenium.Wait 1000
+   With ActiveSheet
+    lastrow = .Cells(.Rows.Count, "A").End(xlUp).Row
+    End With
+     For i = 1 To 1
+     Selenium.FindElementByName("border:containerType:widthType:border_body:purchaseOrderNumber:container:input").SendKeys (Cells(i, 1))
+     Selenium.FindElementByXPath("//li[contains(@class, 'fullButtonLeft')]/div/a", timeout:=10000).Click
+
+     m = Selenium.FindElementsById("errorMessagesSub").Count
+     If m = 0 Then
+     Selenium.Wait 10000
+     If Selenium.FindElementByXPath("//tr[contains(@class, 'reportsResultsRowWhite')]/td[6]/div", timeout:=10000).Text = "In Progress" Then
+     Cells(i, 14) = "N/A"
+     Cells(i, 15) = "N/A"
+     Cells(i, 16) = "N/A"
+     ElseIf Selenium.FindElementByXPath("//tr[contains(@class, 'reportsResultsRowWhite')]/td[6]/div", timeout:=10000).Text = "Partially Shipped" Then
+     Cells(i, 14) = "Partially Shipped"
+     Cells(i, 15) = "Partially Shipped"
+     Cells(i, 16) = "Partially Shipped"
+     Else
+     On Error Resume Next
+     Selenium.FindElementByXPath("//tr[contains(@class, 'reportsResultsRowWhite')]/td/div/a", timeout:=10000).Click
+     Selenium.Wait 5000
+     c = 2
+     nchk = 0
+    ' MsgBox i
+    '  MsgBox ncnt
+    '   MsgBox Cells(i, 8)
+     'While var = 1
+     
+    ' If Cells(i, 8) = Selenium.findElementByXPath("//table[contains(@class, 'orderResultsDetailTable')]/tbody/tr/td/table/tbody/tr['&c&']/td/ul/li[2]/ul/li").Text Then
+   '  MsgBox c
+    ' var = 0
+    ' Else
+    ' c = c + 2
+    ' End If
+    ' Wend
+    'MsgBox Cells(i, 11)
+   Do While nchk = 0
+
+   dispstr = x & c
+   dispstr = dispstr & y
+     On Error Resume Next
+     getstr = Selenium.FindElementByXPath(dispstr, timeout:=10000).Text
+     getstr = Replace(getstr, "Item Code: ", "")
+     If Cells(i, 11) = getstr Then
+        nchk = 1
+        dispstr1 = x1 & c
+        dispstr1 = dispstr1 & y1
+        dispstr2 = x2 & c
+        dispstr2 = dispstr2 & y2
+        On Error Resume Next
+        Cells(i, 14) = Selenium.FindElementByXPath(dispstr2, timeout:=10000).Text
+        'MsgBox Selenium.FindElementByXPath(dispstr2).Text
+        On Error Resume Next
+        MsgBox Selenium.FindElementByXPath(dispstr1).Value
+        Selenium.SwitchToNextWindow
+        'Selenium.Window.Maximize
+        On Error Resume Next
+      '  deltext = Selenium.FindElementByXPath("//table[contains(@class, 'th_table')]/tbody/tr[3]/td[2]", timeout:=10000).Text
+                '   If deltext = "Delivered" Then
+                        '    Cells(i, 15) = "Yes"
+                        '    On Error Resume Next
+                        '     Cells(i, 16) = Selenium.FindElementByXPath("//div[contains(@class, 'shipment_facts_area')]/div[1]/table/tbody/tr[6]/td[2]", timeout:=10000).Text
+     
+                '  Else
+                        '    Cells(i, 15) = "No"
+                         '   On Error Resume Next
+                        '    Cells(i, 16) = Selenium.FindElementByXPath("//div[contains(@class, 'shipment_facts_area')]/div[2]/table/tbody/tr[5]/td[2]", timeout:=10000).Text
+                          '  Selenium.Wait 1000
+                  ' End If
+     Else
+        c = c + 2
+     End If
+     
+     Loop
+     'to get list of phones
+    ' nchk = 0
+    ' c = 2
+    ' Selenium.Close
+    ' Selenium.SwitchToPreviousWindow
+    ' While n = 1
+   
+
+     'If Cells(i, 1) = Cells(ncnt, 1) Then
+    ' MsgBox Cells(ncnt, 11)
+    ' ncnt = ncnt + 1
+             ' Do While nchk = 0
+                '  dispstr = x & c
+                '  dispstr = dispstr & y
+                '  getstr = Selenium.findElementByXPath(dispstr).Text
+                 ' getstr = Replace(getstr, "Item Code: ", "")
+                  '  If Cells(ncnt, 11) = getstr Then
+                       '  nchk = 1
+                       '  dispstr1 = x1 & c
+                       '  dispstr1 = dispstr1 & y1
+                        ' Selenium.findElementByXPath(dispstr1).Click
+                        ' Selenium.get "/"
+                       '  MsgBox c
+                         
+                        ' deltext = Selenium.findElementByXPath("//table[contains(@class, 'th_table')]/tbody/tr[3]/td[2]").Text
+                          '  If deltext = "Delivered" Then
+
+                             '    Cells(ncnt, 18) = Selenium.findElementByXPath("//div[contains(@class, 'shipment_facts_area')]/div[1]/table/tbody/tr[6]/td[2]").Text
+     
+                           '  Else
+
+                                   ' Cells(ncnt, 18) = Selenium.findElementByXPath("//div[contains(@class, 'shipment_facts_area')]/div[2]/table/tbody/tr[5]/td[2]").Text
+                               ' Selenium.Wait 1000
+                            ' End If
+                   '  Else
+                   '      c = c + 2
+                   '  End If
+    
+                ' Loop
+   
+         'Else
+           ' n = 0
+          '  i = ncnt - 1
+          ' ncnt = ncnt + 1
+
+      ' End If
+     
+ 
+     'Wend
+     c = 2
+     'Cells(i, 14) = Cells(i, 1)
+     End If
+     Selenium.Get "https://www.im-mobilityonline.com/bpo/OrderHistory"
+     Else
+     Cells(i, 1).Interior.ColorIndex = 35
+     Cells(i, 1).Borders.LineStyle = xlContinuous
+     Cells(i, 2).Interior.ColorIndex = 35
+     Cells(i, 2).Borders.LineStyle = xlContinuous
+     Cells(i, 2 + 1).Interior.ColorIndex = 35
+     Cells(i, 2 + 1).Borders.LineStyle = xlContinuous
+          Cells(i, 2 + 2).Interior.ColorIndex = 35
+     Cells(i, 2 + 2).Borders.LineStyle = xlContinuous
+          Cells(i, 2 + 3).Interior.ColorIndex = 35
+     Cells(i, 2 + 3).Borders.LineStyle = xlContinuous
+          Cells(i, 2 + 4).Interior.ColorIndex = 35
+     Cells(i, 2 + 4).Borders.LineStyle = xlContinuous
+          Cells(i, 2 + 5).Interior.ColorIndex = 35
+     Cells(i, 2 + 5).Borders.LineStyle = xlContinuous
+          Cells(i, 2 + 6).Interior.ColorIndex = 35
+     Cells(i, 2 + 6).Borders.LineStyle = xlContinuous
+          Cells(i, 2 + 7).Interior.ColorIndex = 35
+     Cells(i, 2 + 7).Borders.LineStyle = xlContinuous
+          Cells(i, 2 + 8).Interior.ColorIndex = 35
+     Cells(i, 2 + 8).Borders.LineStyle = xlContinuous
+  
+     Selenium.Get "https://www.im-mobilityonline.com/bpo/OrderHistory"
+     Selenium.Wait 1000
+     
+     End If
+    n = 1
+    Next i
+   Selenium.Wait 1000
+  Selenium.Close
+End Sub

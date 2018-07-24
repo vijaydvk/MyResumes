@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="description" content="sun e-soft is a leader in managed analytics, and market research firms make better decisions through high-quality insights.We provides a full suite of business process management (BPM) services from traditional voice contact services.">
+<title>CONTACT | sune-soft</title>
+<link rel="icon" type="image/png" href="favicon.png" />
+<link href="css/styles.css" rel="stylesheet" type="text/css" />
+<link href='http://fonts.googleapis.com/css?family=Lobster+Two' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Pontano+Sans' rel='stylesheet' type='text/css'>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-90598482-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+<script type="text/javascript">
+   <!--
+      // Form validation code will come here.
+      function validate()
+      {
+      
+         if( document.form.name.value == "" )
+         {
+            alert( "Please provide your name!" );
+            document.form.name.focus() ;
+            return false;
+         }
+         
+         if( document.form.email.value == "" )
+         {
+            alert( "Please provide your Email!" );
+            document.form.email.focus() ;
+            return false;
+         }
+		 
+		 
+		 var emailID = document.form.email.value;
+         atpos = emailID.indexOf("@");
+         dotpos = emailID.lastIndexOf(".");
+         
+         if (atpos < 1 || ( dotpos - atpos < 2 )) 
+         {
+            alert("Please enter correct email ID")
+            document.form.email.focus() ;
+            return false;
+         }
+         
+		 if( document.form.subject.value == "" )
+         {
+            alert( "Please provide your subject!" );
+            document.form.subject.focus() ;
+            return false;
+         }
+         
+ 
+         
+         if( document.form.feedback.value == "" )
+         {
+            alert( "Please provide your feedback!" );
+			document.form.feedback.focus() ;
+            return false;
+         }
+		 
+		 
+		 
+		 
+         return( true );
+      }
+   //-->
+</script>
+
+</head>
+<body>
+<div class="header-wrap">
+  <div class="header">
+    <div class="logo">
+      	<img src="images/newlogo5.png" alt="logo">
+	    <!--<h1 style="color:black">SUN E-SOFT</h1-->
+    <div class="menu">
+      <ul>
+        <li><a href="index.html" style="color:white">Home</a></li>
+        <li><a href="about.html" style="color:white">About </a></li>
+        <li><a href="services.html" style="color:white">Services </a></li>
+        <li><a href="expertise.html" style="color:white">Expertise</a></li>
+        <li><a href="contact.html" class="active" style="color:white">Contact</a></li>
+		<li><a href="careers.html" style="color:white">Careers</a></li>
+      </ul>
+    </div>
+	</div>
+  </div>
+</div>
+<!--header-wrap-end-->
+<div class="page mar-top30">
+  <div class="title">
+    <h1>Contact us</h1><br>
+    <h2>We’d love to hear from you. Whether you want to learn more about our services, chat about your project or just to say hello. Let’s connect!</h2>
+  </div>
+  <div class="content mar-top30">
+    <form action="adddb.php" name="form" onsubmit="return(validate());" method="post">
+      <div class="contact-form">
+        <label> <span>Full name<br></span>
+        <input type="text" class="input_text" name="name" id="name"/>
+        </label>
+        <label> <span>Email<br></span>
+        <input type="text" class="input_text" name="email" id="email"/>
+        </label>
+        <label> <span>Subject<br></span>
+        <input type="text" class="input_text" name="subject" id="subject"/>
+        </label>
+        <label> <span>Message<br></span>
+        <textarea class="message" name="feedback" id="feedback"></textarea>
+        <input type="submit" class="button" value="Submit" />
+        </label>
+      </div>
+    </form>
+    <div class="address mar-bottom30">
+      <div class="panel">
+        <div class="title">
+          <h2  style="color:black;text-decoration:underline"><b>CONTACT INFORMATION</b></h2>
+        </div>
+        <div class="content">
+          <P><img src="images/icon3.png"  alt="icon" class="mar-right20"/>No.5,Sree Daksha Thvisha Campus,<br> Saravanampatty,<br> Coimbatore - 641035,<br>Tamilnadu, India.</P>
+          <P><img src="images/icon4.png"  alt="icon" class="mar-right20"/>(+91) 422-2974433  , (+91) 9345497061  </P>
+          <p>Email :<a href="mailto:info@sune-soft.com" style="text-decoration:none; color: black;">info@sune-soft.com</a></p><br>
+		        <div class="social">
+        <ul>
+          <li><a href="https://fb.me/sunesoft41"><img src="images/facebook.png" alt="aim" /></a></li>
+          <li><a href="https://twitter.com/@sunesoft41"><img src="images/twitter1.png" alt="aim" /></a></li>
+          <li><a href="https://in.linkedin.com/in/sunesoft-ses-a2b642136"><img src="images/linkedin11.png" alt="aim" /></a></li>
+        </ul>
+      </div>
+        </div>
+      </div>
+      <div class="clearing"></div>
+     </div>
+  </div>
+</div>
+<!--page-->
+<div class="clearing"></div>
+<div class="copyright-wrap">
+  <div class="copyright">
+    <div class="content">
+      <p align="center">Copyright 2017 @ sun e-soft...,</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>
